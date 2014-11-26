@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+
+help =  <<EOS
+RMB(1)
+
+NAME
+
+    rmb -- Rubygems mirror benchmarks
+
+SYNOPSYS
+
+    rmb gem_name [sources]
+
+DESCRIPTION
+
+
+EOS
+
+require 'benchmark'
+require 'fileutils'
+
+gem_name = 'clap'
+sources  = %w(http://0.0.0.0:8808 https://rubygems.org/)
+
+puts '----------------------- RMB -----------------------'
+
+sources.each do |test_source|
+  env             = ENV.to_hash
+  gs_dir          = Dir.pwd + '/.gs/'
+  env["GEM_HOME"] = gs_dir
+  env["GEM_PATH"] = gs_dir
+
+  FileUtils.rm_r gs_dir if File.directory? gs_dir
+  FileUtils.mkdir gs_dir
+
+  existing_sources = `gem sources`.split("\n").grep /http/
+
+  existing_sources.each do |source|
+    puts "=> Removing #{source} from rubygems sources..."
+    system env, "gem sources -r #{source}"
+  end
+
+  puts "=> Adding #{test_source} to sources"
+  system env, "gem source --add #{test_source}"
+
+  puts "=> Starting installing #{gem_name} from: #{test_source}"
+
+  bench = Benchmark.measure { system env, "gem install --no-rdoc --no-ri #{gem_name}" }
+  puts "#{bench}\n"
+end
