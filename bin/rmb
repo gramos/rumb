@@ -19,12 +19,12 @@ EOS
 require 'benchmark'
 require 'fileutils'
 
-gem_name = 'clap'
-sources  = %w(http://0.0.0.0:8808 https://rubygems.org/)
+gem_name = 'rails'
+sources  = %w(http://localhost:9292 https://rubygems.org/)
 
 puts '----------------------- RMB -----------------------'
 
-sources.each do |test_source|
+sources.each do |s|
   env             = ENV.to_hash
   gs_dir          = Dir.pwd + '/.gs/'
   env["GEM_HOME"] = gs_dir
@@ -36,15 +36,15 @@ sources.each do |test_source|
   existing_sources = `gem sources`.split("\n").grep /http/
 
   existing_sources.each do |source|
-    puts "=> Removing #{source} from rubygems sources..."
-    system env, "gem sources -r #{source}"
+   puts "=> Removing #{source} from rubygems sources..."
+   system env, "gem sources -r #{source}"
   end
 
-  puts "=> Adding #{test_source} to sources"
-  system env, "gem source --add #{test_source}"
+  puts "=> Adding #{s} to sources"
+  system env, "gem source --add #{s}"
 
-  puts "=> Starting installing #{gem_name} from: #{test_source}"
+  puts "=> Starting installing #{gem_name} from: #{s}"
 
-  bench = Benchmark.measure { system env, "gem install --no-rdoc --no-ri #{gem_name}" }
+  bench = Benchmark.measure { system env, "gem install #{gem_name} --no-rdoc --no-ri" }
   puts "#{bench}\n"
 end
