@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 
 help =  <<EOS
-RMB(1)
+RUMB(1)
 
 NAME
 
-    rmb -- Rubygems mirror benchmarks
+    rumb -- Rubygems mirror benchmarks
 
 SYNOPSYS
 
-    rmb gem_name mirror_source_a mirror_source_b
+    rumb gem_name mirror_source_a mirror_source_b
 
 DESCRIPTION
 
