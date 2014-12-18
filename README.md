@@ -1,4 +1,4 @@
-rmb - Rubygems mirror benchmarks
+rumb - Rubygems mirror benchmarks
 =================================
 
 This tool was created to measure and compare the performance
@@ -9,19 +9,19 @@ built with rack.
 Install
 -------
 
-gem install rmb
+gem install rumb
 
 Usage:
 ------
 ```
-rmb gem_name mirror_source_a mirror_source_b
+rumb gem_name mirror_source_a mirror_source_b
 ```
 
 Output:
 -------
 
 ```
-###--------- RMB Rubygems Mirror Benchmarks -------------###
+###--------- RUMB Rubygems Mirror Benchmarks -------------###
 
 => Removing http://localhost:4732 from rubygems sources...
 http://localhost:4732 removed from sources
