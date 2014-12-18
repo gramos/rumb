@@ -40,7 +40,7 @@ Successfully installed tzinfo-1.2.2
 Successfully installed rails-4.1.8
 23 gems installed
 
-### --- BENCHMARK RESULTS FOR https://rubygems.org --- ###
+### --- BENCHMARK RESULTS FOR https://http://localhost:4732 --- ###
 0.000000   0.000000   2.220000 ( 19.962169)
 
 => Removing http://localhost:4732 from rubygems sources...
