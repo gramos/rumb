@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "rumb"
-  spec.version       = '0.1.0'
+  spec.version       = '0.1.1'
   spec.authors       = ["Gaston Ramos"]
   spec.email         = ["ramos.gaston@gmail.com"]
   spec.summary       = 'rumb - Rubygems mirror benchmarks.'

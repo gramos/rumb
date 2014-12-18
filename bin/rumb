@@ -16,23 +16,28 @@ DESCRIPTION
 
 EOS
 
+if ARGV.size < 3
+  puts help
+  exit 0
+end
+
 require 'benchmark'
 require 'fileutils'
 
 gem_name = ARGV[0]
 sources  = [ ARGV[1], ARGV[2] ]
 
-puts "\n\n\e[92m###--------- \e[36mRMB Rubygems Mirror Benchmarks" +
+puts "\n\n\e[92m###--------- \e[36mRUMB Rubygems Mirror Benchmarks" +
      " \e[92m-------------###\e[39m\n\n"
 
 sources.each do |s|
   env             = ENV.to_hash
-  rmb_dir          = "#{ ENV['home'] }/.rmb/"
-  env["GEM_HOME"] = rmb_dir
-  env["GEM_PATH"] = rmb_dir
+  rumb_dir          = "#{ ENV['HOME'] }/.rumb/"
+  env["GEM_HOME"] = rumb_dir
+  env["GEM_PATH"] = rumb_dir
 
-  FileUtils.rm_r rmb_dir if File.directory? rmb_dir
-  FileUtils.mkdir rmb_dir
+  FileUtils.rm_r rumb_dir if File.directory? rumb_dir
+  FileUtils.mkdir rumb_dir
 
   existing_sources = `gem sources`.split("\n").grep /http/
 
