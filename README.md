@@ -8,8 +8,9 @@ built with rack.
 
 Install
 -------
-
+```
 gem install rumb
+```
 
 Usage:
 ------
