@@ -27,12 +27,12 @@ require 'fileutils'
 gem_name = ARGV[0]
 sources  = [ ARGV[1], ARGV[2] ]
 
-puts "\n\n\e[92m###--------- \e[36mRUMB Rubygems Mirror Benchmarks" +
+puts "\n\n\e[92m###------------- \e[36mRUMB Rubygems Mirror Benchmarks" +
      " \e[92m-------------###\e[39m\n\n"
 
 sources.each do |s|
   env             = ENV.to_hash
-  rumb_dir          = "#{ ENV['HOME'] }/.rumb/"
+  rumb_dir        = "#{ ENV['HOME'] }/.rumb/"
   env["GEM_HOME"] = rumb_dir
   env["GEM_PATH"] = rumb_dir
 
@@ -51,7 +51,7 @@ sources.each do |s|
 
   puts "\n=> Starting installing #{gem_name} from: #{s}"
 
-  bench = Benchmark.measure { system env, "gem install #{gem_name} --no-rdoc --no-ri" }
+  bench = Benchmark.measure { system env, "gem install #{gem_name}" }
   puts "\n\e[92m### --- BENCHMARK RESULTS FOR #{s} --- ###"
   puts "\e[93m#{bench}\e[39m\n"
 end
