@@ -51,7 +51,10 @@ sources.each do |s|
 
   puts "\n=> Starting installing #{gem_name} from: #{s}"
 
-  bench = Benchmark.measure { system env, "gem install #{gem_name}" }
+  bench = Benchmark.measure { system env, "gem install #{gem_name} --no-document" }
+
   puts "\n\e[92m### --- BENCHMARK RESULTS FOR #{s} --- ###"
   puts "\e[93m#{bench}\e[39m\n"
+
+  system env, "rm -rf #{rumb_dir}"
 end
