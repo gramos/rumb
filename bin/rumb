@@ -28,7 +28,7 @@ gem_name = ARGV[0]
 sources  = [ ARGV[1], ARGV[2] ]
 
 puts "\n\n\e[92m###------------- \e[36mRUMB Rubygems Mirror Benchmarks" +
-     " \e[92m-------------###\e[39m\n\n"
+     " \e[92m-------------###\e[39m"
 
 sources.each do |s|
   env             = ENV.to_hash
@@ -42,19 +42,18 @@ sources.each do |s|
   existing_sources = `gem sources`.split("\n").grep /http/
 
   existing_sources.each do |source|
-   puts "=> Removing #{source} from rubygems sources..."
+   puts "\n=> Removing #{source} from rubygems sources..."
    system env, "gem sources -r #{source}"
   end
 
   puts "=> Adding #{s} to sources"
   system env, "gem source --add #{s}"
-
   puts "\n=> Starting installing #{gem_name} from: #{s}"
 
-  bench = Benchmark.measure { system env, "gem install #{gem_name} --no-document" }
+  bench = Benchmark.measure { system env, "gem install #{gem_name} --no-document --silent" }
 
-  puts "\n\e[92m### --- BENCHMARK RESULTS FOR #{s} --- ###"
+  puts "\n\e[92m### --- BENCHMARK RESULTS FOR [ #{s} ] --- ###"
   puts "\e[93m#{bench}\e[39m\n"
-
+  puts '###-------------------------------------------------------###'
   system env, "rm -rf #{rumb_dir}"
 end
