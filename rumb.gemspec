@@ -8,6 +8,6 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/gramos/rumb/"
   spec.license       = "GPLv3"
   spec.files         = ["README.md", "LICENSE", "bin/rumb"]
-
+  spec.required_ruby_version = '>= 3.0'
   spec.executables.push("rumb")
 end
