@@ -31,10 +31,11 @@ puts "\n\n\e[92m###------------- \e[36mRUMB Rubygems Mirror Benchmarks" +
      " \e[92m-------------###\e[39m"
 
 sources.each do |s|
-  env             = ENV.to_hash
-  rumb_dir        = "#{ ENV['HOME'] }/.rumb/"
-  env["GEM_HOME"] = rumb_dir
-  env["GEM_PATH"] = rumb_dir
+  env                   = ENV.to_hash
+  rumb_dir              = "#{ ENV['HOME'] }/.rumb/"
+  env["GEM_HOME"]       = rumb_dir
+  env["GEM_PATH"]       = rumb_dir
+  env["GEM_SPEC_CACHE"] = rumb_dir
 
   FileUtils.rm_r rumb_dir if File.directory? rumb_dir
   FileUtils.mkdir rumb_dir
